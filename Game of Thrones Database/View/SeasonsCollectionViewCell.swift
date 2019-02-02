@@ -11,6 +11,4 @@ import UIKit
 class SeasonsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var seasonsLabel: UILabel!
 
-    
-    
 }

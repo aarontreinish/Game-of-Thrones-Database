@@ -14,7 +14,6 @@
 		2176D87321C0BDD30078CB80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2176D87121C0BDD30078CB80 /* LaunchScreen.storyboard */; };
 		2176D87B21C0BE880078CB80 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2176D87A21C0BE880078CB80 /* CharacterTableViewCell.swift */; };
 		2176D87D21C0BF390078CB80 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2176D87C21C0BF390078CB80 /* Characters.swift */; };
-		21D3F1B021FF71CD009FE425 /* Season8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3F1AF21FF71CD009FE425 /* Season8.swift */; };
 		21FF045321E8503800FBE98F /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF045221E8503800FBE98F /* EpisodeTableViewCell.swift */; };
 		21FF045521E8505900FBE98F /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF045421E8505900FBE98F /* EpisodeViewController.swift */; };
 		21FF045721E8509200FBE98F /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF045621E8509200FBE98F /* Episodes.swift */; };
@@ -32,7 +31,6 @@
 		2176D87421C0BDD30078CB80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2176D87A21C0BE880078CB80 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		2176D87C21C0BF390078CB80 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
-		21D3F1AF21FF71CD009FE425 /* Season8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season8.swift; sourceTree = "<group>"; };
 		21FF045221E8503800FBE98F /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
 		21FF045421E8505900FBE98F /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		21FF045621E8509200FBE98F /* Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episodes.swift; sourceTree = "<group>"; };
@@ -75,21 +73,44 @@
 		2176D86721C0BDC90078CB80 /* Game of Thrones Database */ = {
 			isa = PBXGroup;
 			children = (
+				21D3F1DE2206445E009FE425 /* Controller */,
+				21D3F1DD22064459009FE425 /* View */,
+				21D3F1DC2206444C009FE425 /* Model */,
 				2176D86821C0BDC90078CB80 /* AppDelegate.swift */,
-				2176D86A21C0BDC90078CB80 /* ViewController.swift */,
-				2176D87C21C0BF390078CB80 /* Characters.swift */,
-				2176D87A21C0BE880078CB80 /* CharacterTableViewCell.swift */,
 				2176D86C21C0BDC90078CB80 /* Main.storyboard */,
 				2176D86F21C0BDD30078CB80 /* Assets.xcassets */,
 				2176D87121C0BDD30078CB80 /* LaunchScreen.storyboard */,
 				2176D87421C0BDD30078CB80 /* Info.plist */,
-				21FF045221E8503800FBE98F /* EpisodeTableViewCell.swift */,
-				21FF045421E8505900FBE98F /* EpisodeViewController.swift */,
-				21FF045821E90EB200FBE98F /* SeasonsCollectionViewCell.swift */,
-				21FF045621E8509200FBE98F /* Episodes.swift */,
-				21D3F1AF21FF71CD009FE425 /* Season8.swift */,
 			);
 			path = "Game of Thrones Database";
+			sourceTree = "<group>";
+		};
+		21D3F1DC2206444C009FE425 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21FF045621E8509200FBE98F /* Episodes.swift */,
+				2176D87C21C0BF390078CB80 /* Characters.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21D3F1DD22064459009FE425 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				21FF045221E8503800FBE98F /* EpisodeTableViewCell.swift */,
+				2176D87A21C0BE880078CB80 /* CharacterTableViewCell.swift */,
+				21FF045821E90EB200FBE98F /* SeasonsCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		21D3F1DE2206445E009FE425 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2176D86A21C0BDC90078CB80 /* ViewController.swift */,
+				21FF045421E8505900FBE98F /* EpisodeViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		3AB59CA84B8DB64EC95F9153 /* Pods */ = {
@@ -226,7 +247,6 @@
 				2176D86B21C0BDC90078CB80 /* ViewController.swift in Sources */,
 				21FF045721E8509200FBE98F /* Episodes.swift in Sources */,
 				2176D86921C0BDC90078CB80 /* AppDelegate.swift in Sources */,
-				21D3F1B021FF71CD009FE425 /* Season8.swift in Sources */,
 				2176D87B21C0BE880078CB80 /* CharacterTableViewCell.swift in Sources */,
 				21FF045321E8503800FBE98F /* EpisodeTableViewCell.swift in Sources */,
 				21FF045921E90EB200FBE98F /* SeasonsCollectionViewCell.swift in Sources */,

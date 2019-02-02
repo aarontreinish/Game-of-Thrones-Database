@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
       
         
-        //fetchCharacterData()
+       
         
         setUpNavBar()
         
@@ -46,43 +46,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         parseData()
         
     }
-
-//    func fetchCharacterData() {
-//        DispatchQueue.main.async {
-//            Alamofire.request(self.url).responseJSON(completionHandler: {(response) in
-//                switch response.result {
-//                case .success(let value):
-//                    let json = JSON(value)
-//
-//                    if let names = json[0]["name"].array {
-//                        for name in names {
-//                            if let name = name[0]["name"].string {
-//                                print(name)
-//                            }
-//                        }
-//                    }
-//
-////                    for (_, name) in names {
-////                        print(name["name"])
-////                    }
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            })
-//        }
-//    }
     
     func setUpNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        
     }
     
-    
+    //checks if search bar is empty
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
+    //filters the characters when searching for one
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredCharacterArray = characterArray.filter({ results -> Bool in
             results.name.lowercased().contains(searchText.lowercased())
@@ -97,7 +72,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
 
-    
+    //parse JSON from the Game of Thrones Database API
     func parseData() {
 
         //fetch data
@@ -145,26 +120,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             characters = characterArray[indexPath.row]
         }
         
-       // let defaultHouseLabel = String("No House")
-        
+        //configure tableView
         cell.nameLabel.text = "Character: " + characters.name
         cell.houseLabel.text = "House: " + (characters.house ?? "No House")
         cell.booksLabel.text = "Books: " + characters.books.joined(separator: ", ")
-
-       // let url = URL(string: "https://example.com/high_resolution_image.png")
-       
-        //let url = URL(string: "https://api.got.show/\(imageURL)")
-        //cell.characterImage.sd_setImage(with: URL(string: "httpS://api.got.show/\(imageURL)"), placeholderImage: UIImage(named: "defaultRickAndMortyImage"))
-        
-        //let url = URL(string: "https://api.got.show/\(characters.imageLink!)")
-        //cell.characterImage.kf.setImage(with: imageURL)
-    
-        
         
         let size = cell.characterImage.frame.size
         let processor = DownsamplingImageProcessor(size: size)
             >> RoundCornerImageProcessor(cornerRadius: 20)
-        //let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: self.flickrPhoto.frame.size.width * UIScreen.main.scale, height: self.flickrPhoto.frame.size.height * UIScreen.main.scale))
         cell.characterImage.kf.indicatorType = .activity
         let imageURL = URL(string: "https://api.got.show/\( characters.imageLink ?? "No image")")
         cell.characterImage.kf.setImage(
@@ -189,12 +152,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let currentImage = characterArray[indexPath.row].imageLink
-//        let imageCrop = currentImage.getCropRatio()
-//    }
-    
 
 }
 
@@ -206,12 +163,3 @@ extension ViewController: UISearchResultsUpdating {
         
     }
 }
-
-extension UIImage {
-    func getCropRatio() -> CGFloat {
-        let widthRatio = CGFloat(self.size.width / self.size.height)
-        return widthRatio
-    }
-}
-
-

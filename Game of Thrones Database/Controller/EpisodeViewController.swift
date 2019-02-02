@@ -31,20 +31,13 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
     var imageApiURL = URL(string: "https://image.tmdb.org/t/p/w500")!
     var seasonsArray = ["1", "2", "3", "4", "5", "6", "7"]
     
-    //let searchController = UISearchController(searchResultsController: nil)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         parseData()
         setUpNavBar()
         
-//        navigationItem.hidesSearchBarWhenScrolling = false
-//        searchController.searchResultsUpdater = (self as! UISearchResultsUpdating)
-//        searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchBar.placeholder = "Search Episodes"
-//        navigationItem.searchController = searchController
-//        definesPresentationContext = true
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -59,39 +52,7 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func parseSeasonEight() {
-        
-//        url = URL(string: "https://api.themoviedb.org/3/tv/1399/season/8?api_key=1e1015160ca5ff95a08d0806061f49a4")!
-        
-        //fetch data
-        URLSession.shared.dataTask(with: season8Url) {(data, response, error) in
-            
-            //to avoid non optional in JSONDecoder
-            guard let data = data else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                //decode object
-                let downloadedData = try decoder.decode(SeasonEight.self, from: data)
-                //print(downloadedData)
-                
-                self.episodeArray.append(downloadedData.episodes)
-                
-                DispatchQueue.main.async {
-                    
-                    self.tableView.reloadData()
-                    self.filteredEpisodeArray = self.episodeArray
-                }
-                
-            } catch {
-                print(error)
-                
-            }
-            
-            }.resume()
-        
-    }
-    
+    //Parse JSON from the Movie Database API
     func parseData() {
         
         //fetch data
@@ -126,28 +87,17 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if isFiltering() {
-//            return filteredEpisodeArray.count
-//        }
         return episodeArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "episodeCell") as? EpisodeTableViewCell else { return UITableViewCell() }
         
-        //sortArray()
-        
-//        let episodes: Seasons
-//        episodes = episodeArray[indexPath.row]
-//        if isFiltering() {
-//            episodes = filteredEpisodeArray[indexPath.row]
-//        } else {
-//            episodes = episodeArray[indexPath.row]
-//        }
+     
+        //configure tableview
         let episodes: Episode
         episodes = episodeArray[indexPath.row]
         
-//cell.titleLabel.text = "Title: " + articleArray[indexPath.row].title
         cell.nameLabel.text = "Title: " + episodes.name!
         cell.overviewLabel.text = "Overview: " + episodes.overview!
         cell.episodeNumberLabel.text = "Episode: " + String(episodes.episode_number!)
@@ -157,7 +107,6 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
         let size = cell.episodeImageView.frame.size
         let processor = DownsamplingImageProcessor(size: size)
             >> RoundCornerImageProcessor(cornerRadius: 20)
-        //let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: self.flickrPhoto.frame.size.width * UIScreen.main.scale, height: self.flickrPhoto.frame.size.height * UIScreen.main.scale))
         cell.episodeImageView.kf.indicatorType = .activity
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(episodes.still_path!)")
         cell.episodeImageView.kf.setImage(
@@ -179,9 +128,6 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
-        //let url = URL(string: "https://image.tmdb.org/t/p/w500\(episodes.still_path!)")
-        //cell.episodeImageView.kf.setImage(with: url)
-        
         return cell
         
     }
@@ -200,12 +146,14 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)as! SeasonsCollectionViewCell
         
+        //configure collectionView
         cell.backgroundColor = UIColor.gray
         
         var index = collectionView.indexPath(for: cell)
         
         print(index)
         
+        //pick which season you want to view and shows corresponding data
         if index == [0, 0] {
             url = season1Url
             episodeArray.removeAll()
@@ -276,16 +224,6 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
-//        if index == [0, 7] {
-//            url = season8Url
-//            episodeArray.removeAll()
-//            parseData()
-//            tableView.reloadData()
-//        }
-//        else {
-//
-//        }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -295,14 +233,3 @@ class EpisodeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
 }
-
-
-
-//extension EpisodeViewController: UISearchResultsUpdating {
-//    // MARK: - UISearchResultsUpdating Delegate
-//    func updateSearchResults(for searchController: UISearchController) {
-//        // TODO
-//        filterContentForSearchText(searchController.searchBar.text!)
-//
-//    }
-//}
