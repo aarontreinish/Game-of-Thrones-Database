@@ -1,0 +1,20 @@
+PODS:
+  - IceAndFireKit (1.2)
+  - Kingfisher (5.0.1)
+
+DEPENDENCIES:
+  - IceAndFireKit
+  - Kingfisher (~> 5.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - IceAndFireKit
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  IceAndFireKit: 4153bd1a02b9fc2024ae05a53207f6aad04b0b9a
+  Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
+
+PODFILE CHECKSUM: ad0587fae6c1aa971e4099897f6a6e5e8692062f
+
+COCOAPODS: 1.5.3
